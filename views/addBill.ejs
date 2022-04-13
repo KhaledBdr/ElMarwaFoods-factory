@@ -1,0 +1,98 @@
+<div class="container justify-content-center mt-5">
+  <a href="/customers/CustomerDetails?ID=<%=user.id%>" class="btn btn-dark mt-3 mb-5"> العودة الى صفحة العميل</a>
+
+  <% if(orders){ %>
+  <table class="table mt-5 pt-5">
+    <thead class="bg-primary text-light">
+      <th> #</th>
+      <th> الصنف</th>
+      <th> العدد</th>
+      <th> السعر</th>
+      <th> الاجمالى</th>
+    </thead>
+    <% orders.forEach(order=>{ %>
+    <tbody>
+      <tr>
+        <td class="text-center"><%=i++%></td>
+        <td><%= order.item_Name %></td>
+        <td><%= order.quantity %></td>
+        <td><%= order.price %></td>
+        <td><%= order.price*order.quantity %></td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+  <% } %>
+  <% if(items){ %>
+  <form action="/bills/add-bill/<%=custID%>" method="post" class="row justify-content-center justify-content-md-start">
+
+    <div class="mb-3 col col-9 col-md-5">
+      <label for="Default select example" class="form-label">اختر الصنف</label>
+      <select class="form-select" aria-label="Default select example" name="item_Name" onchange="showQuantity()">
+        <option selected disabled>الصنف</option>
+        <% items.forEach(item=>{ %>
+        <option value="<%=item.item%>"> <%=item.item%> ---&--- <%=item.sellPrice%></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <% if(errors){ %>
+    <div class="mb-3 col col-9 col-md-5">
+      <% for (let x = 0; x < errors.length; x++){%>
+      <% if(errors[x].param == 'item_Name'){ %>
+      <div class="alert alert-danger"><%= errors[x].msg  %></div>
+      <% break; %>
+      <% }} %>
+    </div>
+    <%} %>
+
+    <div id="quantity" class="mb-3 col col-9 col-md-3">
+      <label for="exampleFormControlInput2" class="form-label">الكمية</label>
+      <input type="number" name="quantity" class="form-control" id="exampleFormControlInput2">
+    </div>
+    <div class="mb-3 col col-md-2 d-none d-md-block"></div>
+
+    <% if(errors){ %>
+    <div class="mb-3 col col-9 col-md-5">
+      <% for (let x = 0; x < errors.length; x++){%>
+      <% if(errors[x].param == 'quantity'){ %>
+      <div class="alert alert-danger"><%= errors[x].msg  %></div>
+      <% break; %>
+      <% }} %>
+    </div>
+    <%} %>
+
+
+    <div class="mb-3 col col-md-2 d-none d-md-block"></div>
+
+    <div id="checkLastOrder" class="mb-3 col col-9 col-md-5 col-lg-3">
+      <div class="form-check mb-3">
+        <label id="checkBox_label" class="form-check-label float-start me-0 me-md-3" for="checkBox"> لا اريد اضافة اصناف اخرى</label>
+        <input type="checkbox" class="form-check-input float-end" onclick="showNotes();" />
+      </div>
+    </div>
+    <div class="mb-3 col col-md-5 d-none d-md-block"></div>
+    <div id="addanotherItem" class="mb-3 col col-9 col-md-5 col-lg-3">
+      <div class="form-check mb-3">
+        <button type="submit" class="btn btn-outline-primary">اضافة صنف</button>
+      </div>
+    </div>
+    <div class="mb-3 col col-9 col-md-8" id="notes">
+      <label for="exampleFormControlTextarea1" class="form-label">ملاحظات</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="notes" rows="3"></textarea>
+    </div>
+    <button type="submit" formaction="/bills/add-bill/done/<%=custID%>" id="submitBTN" class="btn btn-primary col col-9 col-md-5">اضافة الفاتورة</button>
+
+    <% if(errors){ %>
+    <div class="mb-3 col col-9 col-md-5">
+      <% for (let x = 0; x < errors.length; x++){%>
+      <% if(errors[x].param == 'item'){ %>
+      <div class="alert alert-danger text-center"><%= errors[x].msg  %></div>
+      <% break; %>
+      <% }} %>
+    </div>
+    <%} %>
+
+  </form>
+  <% } %>
+</div>

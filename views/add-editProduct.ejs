@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <form method="post" class="mt-1 mt-md-5 pt-5 col col-10 col-md-6">
+      <label for="item" class="form-label fw-bolder text-danger">اسم المنتج</label>
+      <input class="form-control" id="item" name="item" type="text" <% if(product && product.item){ %> value="<%=product.item%>" <% } %>>
+
+      <% if(errors.length != 0){ %>
+      <% for(let i=0 ; i< errors.length ; i++){ %>
+      <% if(errors[i].param == 'item' ){ %>
+      <style>
+      </style>
+      <div class="alert alert-warning alert-dismissible fade show mt-2 col-9 col-md-6" role="alert">
+        <strong>خطأ</strong> <%=errors[i].msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% break;}%>
+      <% }} %>
+
+      <label for="weight" class="form-label fw-bolder text-danger mt-3">وزن المنتج</label>
+      <input class="form-control" id="weight" type="number" min="2" name="weight" <% if(product && product.weight){ %> value="<%=product.weight%>" <% } %>>
+
+      <% if(errors.length != 0){ %>
+      <% for(let i=0 ; i< errors.length ; i++){ %>
+      <% if(errors[i].param == 'weight' ){ %>
+      <div class="alert alert-warning alert-dismissible fade show col-9 col-md-6 mt-2" role="alert">
+        <strong>خطأ</strong> <%=errors[i].msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% break;}%>
+      <% }} %>
+
+      <label for="sellPrice" class="form-label fw-bolder text-danger mt-3">سعر بيع المنتج</label>
+      <input class="form-control" id="sellPrice" type="number" min="2" name="sellPrice" <% if(product && product.sellPrice){ %> value="<%=product.sellPrice%>" <% } %>>
+
+      <% if(errors.length != 0){ %>
+      <% for(let i=0 ; i< errors.length ; i++){ %>
+      <% if(errors[i].param == 'sellPrice' ){ %>
+      <div class="alert alert-warning alert-dismissible fade show col-9 col-md-6 mt-2" role="alert">
+        <strong>خطأ</strong> <%=errors[i].msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% break;}%>
+      <% }} %>
+
+      <label for="quantity" class="form-label fw-bolder text-danger mt-3">الكمية الموجودة</label>
+      <input class="form-control" id="quantity" type="number" min="2" name="quantity" <% if(product && product.quantity){ %> value="<%=product.quantity%>" <% } %>>
+
+      <% if(errors.length != 0){ %>
+      <% for(let i=0 ; i< errors.length ; i++){ %>
+      <% if(errors[i].param == 'quantity' ){ %>
+      <div class="alert alert-warning alert-dismissible fade show col-9 col-md-6 mt-2" role="alert">
+        <strong>خطأ</strong> <%=errors[i].msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% break;}%>
+      <% }} %>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success btn-outline-primary text-light mt-3 mx-auto btn-lg">
+          <% if(title == 'add product'){ %>
+          اضافة المنتج
+          <% }else{ %>
+          تعديل المنتج
+          <% } %>
+        </button>
+      </div>
+    </form>
+    <div class="d-none d-md-block col-6 mt-1 mt-md-5 pt-5 ">
+      <!-- img -->
+
+      <div class="row justify-content-center">
+        <img src="/1.jpg" class=" col col-5 mb-3 img-thumbnail" alt="صورة منتجات">
+        <img src="/2.jpg%>" class=" col col-5 mb-3 img-thumbnail" alt="صورة منتجات">
+        <img src="/2.jpg" class=" col col-5 img-thumbnail" alt="صورة منتجات">
+        <img src="/1.jpg" class=" col col-5 img-thumbnail" alt="صورة منتجات">
+      </div>
+      <% if(errors.length !=0){ %>
+      <div class="alert alert-danger alert-dismissible fade show mt-md-5" role="alert">
+        <strong class="h3 text-end">تحذير:</strong><br>
+        <span class="text-dark">
+          يوجد أخطاء فى البيانات المسجلة!!
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+</div>

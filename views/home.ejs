@@ -1,0 +1,77 @@
+<div class="container">
+  <form class=" pt-5 mb-5" action="/customers" method="post">
+    <div class="mt-md-5 ms-md-5">
+      <input type="text" name="customerName" <% if(searchKey){%> value="<%= searchKey%>" <% } %> class="form-control border-primary border-0 border-bottom text-end rounded-0 w-75  d-md-inline ms-md-3" placeholder="ادخل اسم العميل........">
+      <button type="submit" class="btn btn-primary btn-lg mt-3 mt-md-0 d-block d-md-inline ">بحث</button>
+    </div>
+  </form>
+  <div class="row">
+    <a href="/customers/all" class="btn btn-primary col-9 col-md-3 offset-md-1 mb-2 mb-md-0"> عرض كل العملاء</a>
+    <% if(user.isRepresentative == false){ %>
+    <div class="col-9 col-md-2 offset-md-1 mb-2 mb-md-0">
+      <form action="/customers/representatives" method="get">
+        <select name="represenative" onchange="this.form.submit()" class="form-select form-select-lg w-auto bg-primary" aria-labelledby=".form-select-lg example">
+          <option selected>عرض حسب المندوب </option>
+          <% if(rep){ %>
+          <% rep.forEach(rep=>{%>
+          <option value="<%=rep.name%>"><%=rep.name%></option>
+          <% }) %>
+          <% } %>
+        </select>
+      </form>
+    </div>
+
+    <!-- region -->
+    <div class="col-9 col-md-3 offset-md-1 mb-2 mb-md-0">
+      <form action="/customers/region" method="get">
+        <select name="region" onchange="this.form.submit()" class="form-select form-select-lg w-auto bg-primary" aria-labelledby=".form-select-lg example">
+          <option selected>عرض حسب الاقليم </option>
+          <% if(regions){ %>
+          <% regions.forEach(region=>{%>
+          <option value="<%=region.region%>"><%=region.region%></option>
+          <% }) %>
+          <% } %>
+        </select>
+      </form>
+    </div>
+  </div>
+  <% } %>
+  <!-- customer from forms above -->
+
+  <% if(customer){ %>
+  <table class="table mt-5 pt-5 ">
+    <thead class="bg-primary text-light">
+      <th> رقم العميل</th>
+      <th> اسم العميل </th>
+      <th> الهاتف</th>
+      <th> الايميل</th>
+      <th> المندوب</th>
+      <th> الاقليم</th>
+      <th> العنوان</th>
+      <th> المبالغ المستحقة</th>
+      <th class="bg-success"> </th>
+    </thead>
+    <% customer.forEach(cust=>{ %>
+    <tbody>
+      <tr>
+        <td><%= cust.ID %></td>
+        <td><%= cust.name %></td>
+        <td><%= cust.Phone %></td>
+        <td><%= cust.gmail %></td>
+        <td><%= cust.rep %></td>
+        <td><%= cust.region %></td>
+        <td><%= cust.address %></td>
+        <td><%= cust.debt %></td>
+        <td>
+          <form action="/customers/CustomerDetails" method="get">
+            <input type="hidden" name="ID" value="<%=cust.ID%>">
+            <button type="submit" class="btn btn-primary">عرض المزيد</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+  <% } %>
+
+</div>

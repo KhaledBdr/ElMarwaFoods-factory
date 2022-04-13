@@ -1,0 +1,41 @@
+<div class="container d-flex flex-wrap flex-row justify-content-center justify-content-md-evenly">
+  <% if(employees.length != 0){ %>
+  <% employees.forEach(emp=>{ %>
+  <div class="card m-0 mt-5 m-md-5 text-center" style="width: 17rem;">
+    <img src="<%=emp.image %>" class="card-img-top img-thumbnail mx-auto" alt="صورة الموظف" style="width: 17rem;" />
+    <div class="card-body">
+      <h5 class="card-title text-primary"><%=emp.name%></h5>
+      <span class="text-info fs-5">
+        <%if(emp.isRepresentative){%>
+        مندوب مبيعات
+        <% }else if(emp.isAdmin){ %>
+        محاسب
+        <% }else{%>
+        محاسب عام
+        <%} %> </li>
+      </span>
+
+      <p class="card-text text-danger"><a href="tel:+0<%=emp.phone%>">0<%=emp.phone %></a> .</p>
+    </div>
+    <ul class="list-group list-group-flush text-end">
+      <li class="list-group-item"><span class="text-danger">تاريخ الانضمام : </span><%= emp.joinDate %> </li>
+    </ul>
+    <div class="card-body mx-auto">
+      <% if(emp.isRepresentative){ %>
+
+      <a href="/employees/addCustPermission/<%=emp.id %>" class="card-link btn btn-outline-success d-block mb-3 mx-auto">
+        <% if(emp.addCust){ %>
+        عدم السماح باضافة عملاء
+        <% } %>
+
+        <% if(!emp.addCust){ %>
+        السماح باضافة عملاء
+        <% } %>
+      </a>
+      <% } %>
+      <a href="/employees/delete/<%=emp.id %>" class="card-link btn btn-primary d-block mx-auto">مسح</a>
+    </div>
+
+  </div>
+  <% })} %>
+</div>

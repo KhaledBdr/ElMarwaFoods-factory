@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand">المروة فودز</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link  <% if(active == 'customers'){%> active <% } %>" aria-current="page" href="/customers">الرئيسية</a>
+        </li>
+        <% if(user){ %>
+        <% if(user.isAdmin || user.isSuperAdmin){ %>
+        <li class="nav-item">
+          <a class="nav-link  <% if(active == 'products'){%> active <% } %>" aria-current="page" href="/products"> المنتجات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <% if(active == 'employees'){%> active <% } %>" aria-current="page" href="/employees">الموظفين</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  <% if(active == 'add-rep'){%> active <% } %>" aria-current="page" href="/customers/add-rep">اضافة موظف</a>
+        </li>
+        <% }%>
+        <% if(user.isAdmin || user.isSuperAdmin || user.addCust){ %>
+        <!-- العملاء -->
+        <li class="nav-item">
+          <a class="nav-link  <% if(active == 'add-cust'){%> active <% } %>" aria-current="page" href="/customers/add-cust">اضافة عميل</a>
+        </li>
+        <%  } %>
+        <%  if(user.isSuperAdmin){%>
+        <li class="nav-item">
+          <a class="nav-link  <% if(active == 'sup'){%> active <% } %>" aria-current="page" href="/suppliers">المورديين </a>
+        </li>
+        <% } %>
+        <%} %>
+      </ul>
+      <% if(user){ %>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item  <% if(active == 'profile'){%> active <% } %>">
+          <a href="/users/profile">
+            <img src="/<%=user.image%>" alt="صورة المستخدم" width="50" height="50" class='rounded-circle'>
+          </a>
+        </li>
+        <li class="nav-item  <% if(active == 'logout'){%> active <% } %>">
+          <a class="nav-link" href="/users/logout">تسجيل الخروج</a>
+        </li>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+</nav>

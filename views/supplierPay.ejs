@@ -1,0 +1,22 @@
+<form action="/suppliers/add-pay/<%=supId%>" method="post" class="container justify-content-center mt-5">
+  <label for="debt" class="fw-bolder mb-1">المبلغ المستحق</label>
+  <input disabled type="text" class="form-control text-capitalize text-center fs-4 bg-primary fw-bolder text-light" name="debt" id="debt" value="<%= debt %>">
+
+  <label for="loopForPayed" class="fw-bolder mb-1 mt-5">المبلغ المدفوع</label>
+  <input type="number" name="paid" class="form-control text-center fs-4" id="loopForPayed">
+
+  <% if(errors.length != 0){ %>
+  <% for(let z=0 ; z<errors.length ; z++ ){ %>
+  <%if(errors[z].param == 'paid'){ %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%= errors[z].msg %> </strong>
+
+  </div>
+  <% break }}} %>
+  <% if(active == 'sup'){ %>
+  <button formaction="/suppliers/finishTheBill/<%=supId%>" type="submit" class="btn btn-large btn-danger mt-3"> اكمل عملية الدفع</button>
+  <% }else{ %>
+  <button type="submit" class="btn btn-large btn-danger mt-3"> اكمل عملية الدفع</button>
+  <% } %>
+</form>

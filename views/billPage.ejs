@@ -1,0 +1,64 @@
+<div class="container mb-5 pb-5">
+  <% if(active == 'sup'){ %>
+  <a href="/suppliers/sup/<%=customerID%>" class="btn btn-dark mt-3"> العودة الى صفحة المورد</a>
+  <% }else{ %>
+  <% } %>
+  <div id="Print-this-part">
+    <nav class="navingCustomerDetails w-75 bg-light mb-3 mb-md-5 p-2 text-center mt-5 border border-3 border-dark">فاتورة <%=bills[0].billID %> </nav>
+
+    <% if(bills){ %>
+    <table class="table mt-5 pt-5  table-hover">
+      <thead class="bg-primary text-light">
+        <th> #</th>
+        <th> الصنف</th>
+        <th> العدد</th>
+        <th> السعر</th>
+        <th> الكلى</th>
+      </thead>
+      <% bills.forEach(bill=>{ %>
+      <tbody>
+        <tr>
+          <td class="text-center"><%=i++%></td>
+          <td><%= bill.item %></td>
+          <% if(active == 'sup'){ %>
+          <td><%= bill.amount %></td>
+          <% }else{ %>
+          <td><%= bill.count %></td>
+          <% } %>
+          <td><%= bill.price %></td>
+          <td><%= bill.total %></td>
+        </tr>
+      </tbody>
+      <% }) %>
+      <tbody class="bg-gray text-light fw-bolder">
+        <tr>
+          <td class="text-center">#</td>
+          <td>الاجمالى</td>
+          <td><%=totalNum%></td>
+          <td></td>
+          <td><%= totalCost %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <div class="mt-5 row justify-content-center mb-3 ">
+      <div class="col col-9 col-md-3 bg-primary mt-2 p-2 text-center navingCustomerDetails border border-1 border-dark">
+        <b class=""> قيمة الفاتورة <span class="text-light"> <%=totalCost %> </span></b>
+      </div>
+      <div class="col col-9 col-md-3 bg-primary mt-2 p-2 text-center navingCustomerDetails border border-1 border-dark">
+        <b class="p-2">المبلغ المدفوع <span class="text-light"> <%=BillPayed %> </span></b>
+      </div>
+
+      <div class="col col-9 col-md-4 bg-danger mt-2 p-2 text-center navingCustomerDetails border border-1 border-dark">
+        <b class="">المبلغ المتبقى <span class="text-light"> <%=BillRest %> </span></b>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <% if(active != 'sup'){ %>
+  <div class="d-flex justify-content-end">
+    <a href="./../bills/deleteBill?billID=<%=billID%>" class=" btn btn-danger btn-lg"> مسح الفاتو,رة</a>
+  </div>
+  <% } %>
+</div>

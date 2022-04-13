@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <div class="container">
+    <div class="container">
+      <div class="row">
+        <a href="/suppliers/add-bill/<%=supplier.id%>" class="btn btn-lg col col-12 col-md-5 offset-md-1 btn-success mb-5">اضافة فاتورة</a>
+      </div>
+    </div>
+    <hr>
+    </form>
+  </div>
+  <nav class="navingCustomerDetails w-75 bg-lightseagreen mb-3 mb-md-5 p-2 text-center">معلومات المورد</nav>
+  <div class="row justify-content-center text-center ">
+    <div class="col col-12 col-md-3 offset-1 fs-4 mb-3 mb-md-5  p-2">
+      <span class=" fw-bolder">الاسم: </span> <span class="info"><%= supplier.name %></span>
+    </div>
+
+    <div class="col col-12 col-md-3 offset-1 fs-4 mb-3 mb-md-5  p-2">
+      <span class="fw-bolder">الهاتف: </span> <span class="info">0<%= supplier.phone %></span>
+    </div>
+
+    <div class="col col-12 col-md-3 offset-1 fs-4 mb-3 mb-md-5  p-2">
+      <span class=" fw-bolder">الديون: </span> <span class="info"><%= supplier.debt %></span>
+    </div>
+    <div class="col col-12 col-md-9 offset-1 fs-4 mb-3 mb-md-5  p-2">
+      <span class=" fw-bolder">معلومات عن المورد: </span> <span class="info"><%= supplier.details %></span>
+    </div>
+  </div>
+</div>
+<hr class="container">
+<div class="container mb-5 pb-5">
+  <nav class="navingCustomerDetails w-75 bg-lightseagreen mb-3 mb-md-5 p-2 text-center">فواتير المورد</nav>
+
+  <!-- supplier from forms above -->
+
+  <% if(bills){ %>
+  <table class="table mt-5 pt-5">
+    <thead class="bg-primary text-light">
+      <th> #</th>
+      <th> التاريخ</th>
+      <th> الاجمالى</th>
+      <th> المدفوع</th>
+      <th> المتبقى</th>
+      <th class="bg-success"> </th>
+    </thead>
+    <% let i =0 %>
+    <% bills.forEach(bill=>{ %>
+
+    <% i++ %>
+    <tbody>
+      <tr>
+        <td><%=i %></td>
+        <td><%= bill.date %></td>
+        <td><%= bill.cost %></td>
+        <td><%= bill.paid %></td>
+        <td><%= bill.cost-bill.paid %></td>
+        <td>
+          <form action="/suppliers/billDetails" method="get">
+            <input type="number" style="display: none;" name="supplierID" value="<%=supplier.id%>">
+            <input type="hidden" name="billID" value="<%=bill.id%>">
+            <button type="submit" class="btn btn-primary">عرض </button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+  <% } %>
+</div>
+
+
+<!-- مدفوعات -->

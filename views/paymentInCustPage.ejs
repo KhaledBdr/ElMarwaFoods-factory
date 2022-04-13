@@ -1,0 +1,37 @@
+<div class="container mb-5 pb-5">
+  <nav class="navingCustomerDetails w-75 bg-lightseagreen mb-3 mb-md-5 p-2 text-center">مدفوعات العميل</nav>
+
+  <!-- customer from forms above -->
+
+  <% if(payments){ %>
+  <table class="table mt-5 pt-5">
+    <thead class="bg-primary text-light">
+      <th> #</th>
+      <th> التاريخ</th>
+      <th> المدفوع</th>
+      <th> المتبقى</th>
+      <th> ملاحظات</th>
+      <th class="bg-success"> </th>
+    </thead>
+    <% payments.forEach(pay=>{ %>
+    <tbody>
+      <tr>
+        <td class="text-center"><%= pay.payID %></td>
+        <td><%= pay.date %></td>
+        <td><%= pay.moneyPaid %></td>
+        <td><%= pay.remaining %></td>
+        <td><%= pay.notes %></td>
+        <td>
+          <form action="/customers/payments" method="get">
+            <input type="hidden" name="payID" value="<%=pay.payID%>">
+            <input type="hidden" name="Paid" value="<%=pay.moneyPaid%>">
+            <input type="hidden" name="customerID" value="<%=customer.ID%>">
+            <button type="submit" class="btn btn-danger">مسح </button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+  <% } %>
+</div>

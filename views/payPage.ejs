@@ -1,0 +1,22 @@
+<div class="container">
+  <a href="/customers/CustomerDetails?ID=<%=user.id%>" class="btn btn-dark mt-3 mb-5"> العودة الى صفحة العميل</a>
+  not work
+</div>
+<form action="/bills/pay/<%=billID%>" method="post" class="container justify-content-center mt-5">
+  <label for="totalCost" class="fw-bolder mb-1">المبلغ المستحق</label>
+  <input disabled type="text" class="form-control text-capitalize text-center fs-4 bg-primary fw-bolder text-light" name="totalCost" id="totalCost" value="<%= totalCost %>">
+
+  <label for="loopForPayed" class="fw-bolder mb-1 mt-5">المبلغ المدفوع</label>
+  <input type="number" name="payed" class="form-control text-center fs-4" id="loopForPayed">
+
+  <% if(errors.length != 0){ %>
+  <% for(let z=0 ; z<errors.length ; z++ ){ %>
+  <%if(errors[z].param == 'payed'){ %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%= errors[z].msg %> </strong>
+
+  </div>
+  <% break }}} %>
+  <button type="submit" class="btn btn-large btn-danger mt-3"> اكمل عملية الدفع</button>
+</form>

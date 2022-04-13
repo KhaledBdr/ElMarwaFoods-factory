@@ -1,0 +1,117 @@
+<form class="container mt-5 pt-5" action="/customers/add-rep" method="post" enctype="multipart/form-data">
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <% if(errors.length != 0){ %>
+  <div class="row mb-4 justify-content-center">
+    <div class="col col-9 col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example2">اسم المندوب</label>
+        <input type="text" name="name" id="form3Example2" class="form-control" <% if(info && info.name){%> value="<%= info.name%>" <% } %> />
+      </div>
+    </div>
+    <div class="col col-9 mt-4 col-md-5">
+      <% if(errors.length != 0){ %>
+      <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'name'){ %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong><%= errors[n].msg %> </strong>
+      </div>
+      <%  break}} %>
+      <% } %>
+    </div>
+  </div>
+  <div class="row mb-4 justify-content-center">
+    <div class="col col-9 col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example2">رقم المندوب</label>
+        <input type="number" name="phone" id="form3Example2" class="form-control" <% if(info && info.phone){%> value="<%= info.phone%>" <% } %> />
+      </div>
+    </div>
+    <div class="col col-9 mt-4 col-md-5">
+      <% if(errors.length != 0){ %>
+      <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'phone'){ %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong><%= errors[n].msg %> </strong>
+      </div>
+      <%  break}} %>
+      <% } %>
+    </div>
+  </div>
+  <% }else{ %>
+
+  <div class="row mb-4 justify-content-center">
+    <div class="col col-9 col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example2">اسم المندوب</label>
+        <input type="text" name="name" id="form3Example2" class="form-control" <% if(info && info.name){%> value="<%= info.name%>" <% } %> />
+      </div>
+    </div>
+    <div class="col col-9 col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example2">رقم المندوب</label>
+        <input type="number" name="phone" id="form3Example2" class="form-control" <% if(info && info.phone){%> value="<%= info.phone%>" <% } %> />
+      </div>
+    </div>
+  </div>
+  <%  } %>
+
+
+
+  <div class="d-flex flex-wrap mb-4 justify-content-center">
+    <div class="">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="isRepresentative">
+        <label class="form-check-label" for="inlineRadio1">مندوب مبيعات</label>
+      </div>
+    </div>
+    <div class="me-5">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="isAdmin">
+        <label class="form-check-label" for="inlineRadio2">محاسب</label>
+      </div>
+    </div>
+  </div>
+  <% if(errors.length != 0){ %>
+  <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'role'){ %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%= errors[n].msg %> </strong>
+  </div>
+  <%  break}} %>
+  <% } %>
+  <div class="container row justify-content-center">
+    <div class="form-outline mb-4 col-9 col-md-5 ">
+      <label class="form-label" for="form3Example6">اختر صورة</label>
+      <input type="file" name="image" id="form3Example6" class="form-control" />
+    </div>
+  </div>
+  <% if(errors.length != 0){ %>
+  <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'image'){ %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%= errors[n].msg %> </strong>
+  </div>
+  <%  break}} %>
+  <% } %>
+  <!-- Password input -->
+  <div class="container row justify-content-center">
+    <div class="form-outline mb-4 col-9 col-md-5 ">
+      <label class="form-label" for="form3Example4">كلمة السر</label>
+      <input type="password" name="password" id="form3Example4" class="form-control" />
+    </div>
+  </div>
+  <% if(errors.length != 0){ %>
+  <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'password'){ %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%= errors[n].msg %> </strong>
+  </div>
+  <%  break}} %>
+  <% } %>
+
+  <!-- Submit button -->
+  <div class="container row justify-content-center">
+    <button type="submit" class="btn btn-primary col col-8 col-md-3  btn-block mb-4">اضافة</button>
+  </div>
+
+</form>

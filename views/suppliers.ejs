@@ -1,0 +1,77 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <h1 class="p-2 pb-4 bg-primary text-center col-9 text-danger">المورديين</h1>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الهاتف</th>
+          <th>تفاصيل</th>
+          <th>عرض</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(suppliers.length != 0){ %>
+        <% suppliers.forEach(s=>{ %>
+        <tr>
+          <td><%=s.name %> </td>
+          <td><%=s.phone %> </td>
+          <td><%=s.details %> </td>
+          <td><a href="/suppliers/sup/<%=s.id%>" class="btn btn-info"> عرض المزيد..</a> </td>
+        </tr>
+        <% })} %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container line"></div>
+
+
+  <div class="row justify-content-center mt-5 add-sup p-5">
+    <h2 class="p-2 bg-lightseagreen info text-center col-7">اضافة مورد جديد</h2>
+    <form action="/suppliers/add-sup" method="post" class="col-9 col-md-6">
+      <div class="row justify-content-center">
+        <div class="form-check mb-3 col-12">
+          <label for="name" class="form-label">الاسم</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId" <% if(values.name){%>value="<%=values.name%>" <% } %>>
+        </div>
+
+
+
+        <% if(errors.length != 0){ %>
+        <% for(let i = 0 ; i< errors.length ; i++){ %>
+        <% if(errors[i].param == 'name'){ %>
+        <div class="alert alert-warning alert-dismissible fade show mb-3 col-12" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong><%= errors[i].msg  %></strong>
+        </div>
+
+        <% break;} %>
+        <% }} %>
+
+        <div class="form-check mb-3 col-12">
+          <label id="phone_label" for="phone" class="required">رقم الهاتف</label>
+          <input type="number" id="phone" name="phone" rows="5" class="form-control" min="0" <% if(values.phone){%>value="<%=values.phone%>" <% } %>></input>
+        </div>
+
+        <% if(errors.length != 0){ %>
+        <% for(let i = 0 ; i< errors.length ; i++){ %>
+        <% if(errors[i].param == 'phone'){ %>
+        <div class="alert alert-warning alert-dismissible fade show mb-3 col-12" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong><%= errors[i].msg  %></strong>
+        </div>
+
+        <% break;} %>
+        <% }} %>
+
+        <div class="form-check mb-3 col-12">
+          <label id="details_label" for="details" class="required">معلومات اكثر...</label>
+          <textarea id="details" name="details" rows="5" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary col-6">اضافة</button>
+      </div>
+    </form>
+  </div>
+</div>

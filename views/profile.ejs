@@ -1,0 +1,60 @@
+<style>
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 50px;
+    text-align: center;
+    font-family: arial;
+  }
+</style>
+</head>
+
+<body>
+  <div class="card container">
+    <div class="row">
+      <div class="col col-12 col-md-6">
+        <img class="img-thumbnail mx-auto rounded-circle" style="width: 50%;" alt="user image" src="/<%=user.image%>"></img>
+      </div>
+      <div class="col col-12 col-md-6 mt-2 pt-2 text-left">
+        <h3 class="text-primary mb-4">
+          <li>الاسم: <i class="text-dark"><%= user.name  %> </i>
+        </h3>
+        </li>
+        <hr>
+        <h3 class="text-primary mb-4">
+          <li>الهاتف: <i class="text-dark h4">0<%= user.phone  %> </i>
+        </h3>
+        </li>
+        <!-- is super admin -->
+        <hr>
+        <h3 class="text-primary mb-4">
+          <li>المنصب : <i class="text-dark">
+              <% if(user.isSuperAdmin){ %>
+              المحاسب العام
+              <% }else if(user.isRepresentative){ %>
+              مندوب مبيعات
+              <% }else{ %>
+              محاسب
+              <% } %>
+            </i>
+        </h3>
+        </li>
+
+
+
+
+        <hr>
+        <h3 class="text-primary mb-4">
+          <li>تاريخ العمل:<i class="text-dark"><%=user.joinDate%></i>
+        </h3>
+        </li>
+        <p><a href="/users/profile/edit" class="btn btn-primary text-center w-75">Edit</a></p>
+        <a href="/users/changePassword">
+          <button type="button" class="btn btn-danger">
+            Change Password <span class="badge badge-light">4</span>
+          </button>
+        </a>
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,74 @@
+<div class="container mt-5">
+  <% if(items.length != 0){ %>
+  <table class="table table-striped table-responsive table-hover">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>الكمية</th>
+        <th>السعر</th>
+        <th>السعر الكلى</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach(item=>{ %>
+      <tr>
+        <td><%=item.item %></td>
+        <td><%=item.amount %></td>
+        <td><%=item.price %></td>
+        <td><%=item.totalPrice %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <% } %>
+
+  <div class="row justify-content-center">
+
+    <form class="col-5" method="post" action="/suppliers/add-bill/<%=supId%>">
+      <div class="col-12 mb-2">
+        <label for="Custom01" class="form-label">الصنف</label>
+        <input type="text" name="item" class="form-control" id="Custom01" required>
+
+        <% if(errors){ %>
+        <% for(let n =0 ; n<errors.length ; n++){ %>
+        <% if(errors[n].param == 'item'){ %>
+        <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong> <%=errors[n].msg %></strong>
+        </div>
+        <% break;}} %>
+        <% } %>
+      </div>
+      <div class="col-12 mb-2">
+        <label for="validationCustom02" class="form-label">الكمية</label>
+        <input type="number" name="amount" class="form-control" id="validationCustom02" required>
+      </div>
+      <% if(errors){ %>
+      <% for(let n =0 ; n<errors.length ; n++){ %>
+      <% if(errors[n].param == 'amount'){ %>
+      <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong> <%=errors[n].msg %></strong>
+      </div>
+      <% break;}} %>
+      <% } %>
+
+      <div class="col-12 mb-5">
+        <label for="validationCustom02" class="form-label">سعر الوحدة</label>
+        <input type="number" name="price" class="form-control" id="validationCustom02" required>
+      </div>
+      <% if(errors){ %>
+      <% for(let n =0 ; n<errors.length ; n++){ %>
+      <% if(errors[n].param == 'price'){ %>
+      <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong> <%=errors[n].msg %></strong>
+      </div>
+      <% break;}} %>
+      <% } %>
+      <button class="btn btn-primary col-5 offset-1" type="submit" formaction="/suppliers/bill/addAnotherItemToTheBill/<%=supId%>">اضافة صنف اخر</button>
+      <button class="btn btn-danger col-5" type="submit">اضافة الفاتورة</button>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<form class="container mt-3 bg-special pt-3 pb-5" enctype="multipart/form-data" action="/users/profile/edit" method="post">
+
+  <h1 class="display-4 text-center w-100 bg-success">تعديل البيانات</h1>
+  <div class="row mt-5">
+    <div class="col col-12 col-md-5 justify-content-center">
+      <img src="/<%=user.image%>" class="img-fluid rounded mx-auto d-block w-25 pb-2" alt="<%=user.name%>  image">
+
+      <input type="file" name="image" accept="images/" class="form-control-file btn btn-light mt-4" id="exampleFormControlFile1">
+      <% for(let i =0 ; i< errors.length ; i++){ 
+        if (errors[i].param === 'image'){%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        <%=errors[i].msg%>
+      </div>
+      <% break }}  %>
+    </div>
+    <div class="col col-12 col-md-6">
+      <div class="form-group row m-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">الاسم</label>
+        <div class="col-sm-10">
+          <input type="text" name="name" value="<%=newInfo.name%>" class="form-control" id="inputEmail3">
+        </div>
+      </div>
+      <% for(let i =0 ; i< errors.length ; i++){ 
+        if (errors[i].param === 'name'){%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%=errors[i].msg%>
+      </div>
+      <% break }}  %>
+
+      <div class="form-group row m-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">الهاتف</label>
+        <div class="col-sm-10">
+          <input type="text" name="phone" value="0<%=user.phone%>" class="form-control" id="inputPassword3" disabled>
+        </div>
+      </div>
+
+      <hr>
+
+      <label for="basic-url" class="details mt-3 text-center">يرجى ادخال كلمةالسر للتأكد من انك صاحب هذا الحساب</label>
+      <div class="form-group row m-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">كلمة السر</label>
+        <div class="col-sm-10">
+          <input type="password" name="password" class="form-control" id="inputPassword3" id="basic-url">
+        </div>
+      </div>
+      <% for(let i =0 ; i< errors.length ; i++){ 
+        if (errors[i].param === 'password'){%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%=errors[i].msg%>
+      </div>
+      <% break }}  %>
+
+    </div>
+    <div class="container d-flex justify-content-center">
+      <% for(let i =0 ; i< errors.length ; i++){ 
+        if (errors[i].param === 'same'){%>
+      <div class="alert alert-warning alert-dismissible fade show w-75 text-center" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%=errors[i].msg%>
+      </div>
+      <% break }}  %>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+      <button type="submit" class="btn btn-warning btn-lg  w-50 info ls3">تاكيد</button>
+    </div>
+  </div>
+</form>

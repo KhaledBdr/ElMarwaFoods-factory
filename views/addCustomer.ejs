@@ -1,0 +1,136 @@
+<form action="/customers/add-cust" method="post" class="container mt-5">
+  <div class="row mx-auto">
+    <!-- name -->
+    <div class="row g-3 align-items-center">
+      <div class="col-3 text-center">
+        <label for="inputNameLabel" class="col-form-label">اسم العميل</label>
+      </div>
+      <div class="col-8  col-lg-5">
+        <input type="text" name="name" id="inputNameLabel" class="form-control" aria-describedby="nameHelp" <% if(info && info.name){%> value="<%= info.name%>" <% } %>>
+      </div>
+      <div class="col-auto">
+        <span id="nameHelp" class="form-text">
+          اسم العميل لابد وان يكون 3 حروف فيما اكثر
+        </span>
+      </div>
+    </div>
+
+    <% if(errors.length != 0){ %>
+    <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'name'){ %>
+    <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= errors[n].msg %> </strong>
+    </div>
+    <%  break}} %>
+    <% } %>
+
+    <!-- phone -->
+    <div class="row g-3 align-items-center mt-3">
+      <div class="col-3 text-center">
+        <label for="inputPhoneLabel" class="col-form-label">رقم العميل</label>
+      </div>
+      <div class="col-8 col-lg-5">
+        <input type="number" name="phone" id="inputPhoneLabel" class="form-control" aria-describedby="phoneHelp" <% if(info && info.phone){%> value="<%= info.phone%>" <% } %>>
+      </div>
+    </div>
+
+    <% if(errors.length != 0){ %>
+    <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'phone'){ %>
+    <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= errors[n].msg %> </strong>
+    </div>
+    <%  break}} %>
+    <% } %>
+
+    <!-- Address -->
+    <div class="row g-3 align-items-center mt-3">
+      <div class="col-3 text-center">
+        <label for="inputAddressLabel" class="col-form-label">عنوان العميل</label>
+      </div>
+      <div class="col-8 col-lg-5">
+        <input type="text" name="address" id="inputAddressLabel" class="form-control" <% if(info && info.address){%> value="<%= info.address%>" <% } %>>
+      </div>
+    </div>
+
+    <% if(errors.length != 0){ %>
+    <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'address'){ %>
+    <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= errors[n].msg %> </strong>
+    </div>
+    <%  break}} %>
+    <% } %>
+
+    <!-- Gmail -->
+    <div class="row g-3 align-items-center mt-3">
+      <div class="col-3 text-center">
+        <label for="inputGmailLabel" class="col-form-label ">البريد الالكترونى</label>
+      </div>
+      <div class="col-8 col-lg-5">
+        <input type="text" name="gmail" id="inputGmailLabel" class="form-control" <% if(info && info.gmail){%> value="<%= info.gmail%>" <% } %>>
+      </div>
+    </div>
+
+    <% if(errors.length != 0){ %>
+    <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'gmail'){ %>
+    <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= errors[n].msg %> </strong>
+    </div>
+    <%  break}} %>
+    <% } %>
+
+
+    <div class="row g-3 align-items-center mt-3">
+      <div class="col-3 text-center">
+        <label for="inputGmailLabel" class="col-form-label ">المندوب</label>
+      </div>
+      <div class="col-8 col-lg-5">
+
+        <select name="rep" class="form-select form-select-lg col-8 col-lg-5 col-5 mx-auto mt-2" aria-labelledby=".form-select-lg example" aria-placeholder="عرض حسب المندوب">
+          <% if(reps){ %>
+          <% reps.forEach(rep=>{%>
+          <option value="<%=rep.name%>"><%=rep.name%></option>
+          <% }) %>
+          <% } %>
+        </select>
+      </div>
+    </div>
+
+    <% if(errors.length != 0){ %>
+    <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'rep'){ %>
+    <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= errors[n].msg %> </strong>
+    </div>
+    <%  break}} %>
+    <% } %>
+
+    <div class="row g-3 align-items-center mt-3">
+      <div class="col-3 text-center">
+        <label for="inputGmailLabel" class="col-form-label ">القطاع</label>
+      </div>
+      <div class="col-8 col-lg-5">
+
+        <select name="region" class="form-select form-select-lg col-5" aria-labelledby=".form-select-lg example" aria-placeholder="عرض حسب الاقليم">
+          <% if(regions){ %>
+          <% regions.forEach(region=>{%>
+          <option value="<%=region.region%>"><%=region.region%></option>
+          <% }) %>
+          <% } %>
+        </select>
+        <% if(errors.length != 0){ %>
+        <% for(let n=0 ; n< errors.length ; n++){ if(errors[n].param == 'region'){ %>
+        <div class="alert alert-warning alert-dismissible fade show col-9 col-md-5 mx-auto mt-2" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong><%= errors[n].msg %> </strong>
+        </div>
+        <%  break}} %>
+        <% } %>
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary col-5 mx-auto mt-5 mb-5">حفظ</button>
+  </div>
+</form>

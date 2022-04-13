@@ -1,0 +1,60 @@
+body , html  {
+    height: 100%;
+}
+input[type= number] ::-webkit-inner-spin-button ,
+input[type= number] ::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: none;
+    appearance: none;
+}
+.notFound{
+    letter-spacing: 3px;
+    font-family: cursive;
+    color: red;
+    font-size: 55px;
+}
+.h-95 {
+  height: 95% !important;
+}
+.mt-30 {
+  margin-top: 30vh !important;
+}
+.min-vh-95 {
+  min-height: 95v !important;
+}
+.info{
+    font-family: cursive;
+    /* font-size: 55px; */
+}
+.bg-lightseagreen{
+  background-color: lightseagreen;
+}
+.navingCustomerDetails{
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.fullWidth{
+  width: 100%;
+}
+#notes,#submitBTN {
+  display: none;
+}
+.bg-gray {
+  background-color: rgb(107, 107, 107);
+}
+.me-25{
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 25%;
+  font-family:'Lucida Sans Unicode', 'Lucida Grande';
+  font-size: 30px;
+}
+.line{
+  height: 2px;
+  background-color: gray;
+}
+.add-sup{
+  background-image: linear-gradient(to bottom left, green , rgb(204, 218, 204) );
+}
